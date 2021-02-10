@@ -1,18 +1,5 @@
-const {ApolloServer, gql} = require('apollo-server')
-
-// For testing
-const users = [
-  {
-    displayName: 'Artem Trubin',
-    userName: 'yaripey',
-    id: 1
-  },
-  {
-    displayName: 'Ivan Ivanov',
-    userName: 'ivanovi',
-    id: 2
-  }
-]
+const { ApolloServer, gql } = require('apollo-server')
+const { users, posts } = require('./mocked-data')
 
 const typeDefs = gql`
   type User {
