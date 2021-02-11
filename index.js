@@ -1,28 +1,6 @@
-const { ApolloServer, gql } = require('apollo-server')
-const { users, posts } = require('./mocked-data')
-
-const typeDefs = gql`
-  type User {
-    displayName: String!
-    userName: String!
-    id: ID!
-  }
-
-  type Query {
-    usersCount: Int!
-    allUsers: [User!]!
-    findUser(userName: String!): User
-  }
-`
-
-const resolvers = {
-  Query: {
-    usersCount: () => users.length,
-    allUsers: () => users,
-    findUser: (root, args) => 
-    users.find(user => user.userName === args.userName)
-  }
-}
+const { ApolloServer} = require('apollo-server')
+const { typeDefs } = require('./graphql/typeDefs')
+const { resolvers } = require('./graphql/resolvers')
 
 const server = new ApolloServer({
   typeDefs,
