@@ -20,7 +20,7 @@ const resolvers = {
     usersCount: () => users.length,
     allUsers: () => users,
     findUser: (root, args) => 
-      users.find(user => user.userName === args.userName)
+    users.find(user => user.userName === args.userName)
   }
 }
 
