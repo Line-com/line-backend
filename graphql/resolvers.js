@@ -1,77 +1,43 @@
-const uuid = require('uuid')
-
-const { getUser } = require('../common/helpers')
+const { 
+  getUser, 
+  getUsers,
+  getPost,
+  registerUser,
+  makeNewPost,
+  getPostsForUser,
+  getAuthor,
+} = require('../common/helpers')
 
 const resolvers = {
   User: {
     readers: (root) => {
-
+      if (!root.readers) return null
       return root.readers.map((userID) => {
-        return users.find((user) => {
-          return user.id === userID
-        })
+        return getUser(userID)
       })
     },
     reading: (root) => {
+      if (!root.reading) return null
       return root.reading.map((userID) => {
-        return users.find((user) => {
-          user.id === userID
-        })
+        return getUser(userID)
       })
     },
-    posts: (root) => {
-      return posts.filter(post => {
-        return post.author === root.id
-      })
-    }
+    posts: (root) => getPostsForUser(root.id)
   },
 
   Post: {
-    author: (root) => {
-      return users.find((user) => {
-        return user.id === root.author
-      })
-    }
+    author: (root) => getAuthor(root.author)
   },
 
   Query: {
-    allUsers: () => {
-      return users
-    },
-
-    findUser: (root, args) => {
-      return users.find(user => user.id === args.id)
-    },
-
-    findPost: (root, args) => {
-      return posts.find(post => post.id === args.id)
-    }
+    allUsers: () => getUsers(),
+    findUser: (root, args) => getUser(args.id),
+    findPost: (root, args) => getPost(args.id)
   },
 
   Mutation: {
-    newUser: (root, args) => {
-      const user = {
-        displayName: args.displayName,
-        userName: args.userName,
-        readers: [],
-        reading: [],
-        id: uuid.v4(),
-      }
-      users.push(user)
-      return user
-    },
-
-    newPost: (root, args) => {
-      const post = {
-        content: args.content,
-        author: args.authorID,
-        timespamp: Date.now(),
-        id: uuid.v4(),
-      }
-
-      posts.push(post)
-      return post
-    }
+    newUser: (root, args) => registerUser(args),
+    newPost: (root, args) => makeNewPost(args),
   }
 }
 

@@ -5,9 +5,9 @@ const typeDefs = gql`
     displayName: String!
     userName: String!
     id: ID!
-    readers: [User!]!
-    reading: [User!]!
-    posts: [Post!]!
+    readers: [User!]
+    reading: [User!]
+    posts: [Post!]
   }
 
   type Post {
