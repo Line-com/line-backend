@@ -4,7 +4,7 @@ const users = [
     userName: 'artemTrubin',
     id: "1",
     readers: ["2", "3"],
-    reading: ["2"]
+    reading: []
   },
   {
     displayName: 'Ivan Ivanov',

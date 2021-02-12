@@ -48,7 +48,11 @@ const resolvers = {
     getTimeLineForUser: (root, args) => {
       const user = users.find(user => user.id === args.id);
       if (user) {
-        return posts.filter(post => user.reading.includes(post.author));
+        const timeline = posts.filter(post => user.reading.includes(post.author));
+        if (timeline.length !== 0) {
+          timeline.sort(({timestamp: timestampA}, {timestamp: timestampB}) => timestampB - timestampA)
+          return timeline
+        }
       }
       return null;
     }
