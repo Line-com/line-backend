@@ -5,9 +5,9 @@ const typeDefs = gql`
     displayName: String!
     userName: String!
     id: ID!
-    readers: [User!]!
-    reading: [User!]!
-    posts: [Post!]!
+    readers: [User!]
+    reading: [User!]
+    posts: [Post!]
   }
 
   type Post {
@@ -18,7 +18,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    allUsers: [User!]!
+    allUsers: [User!]
     findUser(id: ID!): User
     findPost(id: ID!): Post
     getTimeLineForUser(id: ID!): [Post!]
