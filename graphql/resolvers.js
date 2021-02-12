@@ -1,9 +1,11 @@
-const { users, posts } = require('./mocked-data.js')
 const uuid = require('uuid')
+
+const { getUser } = require('../common/helpers')
 
 const resolvers = {
   User: {
     readers: (root) => {
+
       return root.readers.map((userID) => {
         return users.find((user) => {
           return user.id === userID
