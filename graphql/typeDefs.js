@@ -21,6 +21,7 @@ const typeDefs = gql`
     allUsers: [User!]!
     findUser(id: ID!): User
     findPost(id: ID!): Post
+    getTimeLine(id: ID!): [Post!]
   }
 
   type Mutation {

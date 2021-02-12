@@ -59,6 +59,22 @@ function getAuthor(userID) {
   return users.find(user => user.id === userID)
 }
 
+function getReadingPosts(user) {
+  return posts.filter(post => user.reading.includes(post.author))
+}
+
+function getTimeLine(userID) {
+  const user = getUser(userID)
+  if (!user) return null
+  const readingPosts = getReadingPosts(user)
+  if (!readingPosts.length) return null
+  return chronologizePosts(readingPosts)
+}
+
+function chronologizePosts(posts) {
+  return posts.sort(({timestamp: timeA}, {timestamp: timeB}) => timeB - timeA)
+}
+
 module.exports = {
   getUser,
   getUsers,
@@ -66,5 +82,6 @@ module.exports = {
   registerUser,
   makeNewPost,
   getPostsForUser,
-  getAuthor
+  getAuthor,
+  getTimeLine
 }

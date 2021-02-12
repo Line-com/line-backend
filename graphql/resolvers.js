@@ -6,6 +6,7 @@ const {
   makeNewPost,
   getPostsForUser,
   getAuthor,
+  getTimeLine,
 } = require('../common/helpers')
 
 const resolvers = {
@@ -32,7 +33,8 @@ const resolvers = {
   Query: {
     allUsers: () => getUsers(),
     findUser: (root, args) => getUser(args.id),
-    findPost: (root, args) => getPost(args.id)
+    findPost: (root, args) => getPost(args.id),
+    getTimeLine: (root, args) => getTimeLine(args.id)
   },
 
   Mutation: {
