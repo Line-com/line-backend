@@ -43,6 +43,14 @@ const resolvers = {
 
     findPost: (root, args) => {
       return posts.find(post => post.id === args.id)
+    },
+
+    getTimeLineForUser: (root, args) => {
+      const askedForUser = users.find(user => user.id === args.id);
+      if (askedForUser) {
+        return posts.filter(post => askedForUser.reading.includes(post.author));
+      }
+      return null;
     }
   },
 
