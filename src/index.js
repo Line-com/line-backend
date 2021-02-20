@@ -7,9 +7,6 @@ const server = new ApolloServer({
     resolvers,
 });
 
-const s =
-    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-
 server.listen().then(({ url }) => {
     console.log(`Server ready at ${url}`);
 });
