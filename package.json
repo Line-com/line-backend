@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node src/index.js",
         "dev": "nodemon src/index.js",
-        "lint": "lint-staged",
+        "lint": "eslint src --fix",
+        "lint-staged": "lint-staged",
         "postinstall": "husky install",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
